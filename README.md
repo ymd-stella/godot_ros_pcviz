@@ -1,5 +1,7 @@
 # godot_ros_pcviz
 
+![Screen Shot](resource/ss.png)
+
 ## Usage (with docker, docker-compose)
 ```
 $ git clone https://github.com/ymd-stella/godot_ros_pcviz.git
