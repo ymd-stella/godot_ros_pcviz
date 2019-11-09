@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_use_point_size = true
+vertex_color_use_as_albedo = true
+params_point_size = 5.0
+
+[node name="ImmediateGeometry" type="ImmediateGeometry"]
+material_override = SubResource( 1 )

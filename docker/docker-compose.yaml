@@ -1,0 +1,36 @@
+version: '2'
+
+services:
+  godot_ros_pcviz:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - user_name=${USER_NAME}
+        - group_name=${GROUP_NAME}
+        - user_id=${USER_ID}
+        - group_id=${GROUP_ID}
+        - ROS_DISTRO=melodic
+    environment:
+      - ROS_DISTRO_DOCKER=melodic
+      - XAUTHORITY=${XAUTH}
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+      - XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR}
+      - USER_NAME=${USER_NAME}
+      - TERM=xterm-256color
+    user: ${USER_ID}:${GROUP_ID}
+    network_mode: host
+    group_add:
+      - video
+      - sudo
+    privileged: true
+    devices:
+      - "/dev/dri:/dev/dri"
+    volumes:
+      - "${XSOCK}:${XSOCK}:rw"
+      - "${XAUTH}:${XAUTH}:rw"
+      - "${XDG_RUNTIME_DIR}=${XDG_RUNTIME_DIR}"
+      - "${PWD}/home:/home/${USER_NAME}"
+      - "${PWD}/../:/home/${USER_NAME}/catkin_ws/src/godot_ros_pcviz"
+      - "/home/${USER_NAME}/catkin_ws/src/godot_ros_pcviz/docker"

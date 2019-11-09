@@ -1,0 +1,8 @@
+[gd_resource type="NativeScript" load_steps=2 format=2]
+
+[ext_resource path="res://godot_ros_pcviz.gdnlib" type="GDNativeLibrary" id=1]
+
+[resource]
+resource_name = "godot_ros_pcviz"
+class_name = "GodotRosPcviz"
+library = ExtResource(1)
