@@ -9,15 +9,22 @@ if [ ! -e ${HOME}/.bashrc_profile ]; then
 fi
 
 if [ ! -e ${HOME}/catkin_ws/src/CMakeLists.txt ]; then
+    # build godot-cpp
+    cd $HOME/catkin_ws/src/godot_ros_pcviz/thirdparty/godot-cpp
+    mkdir -p build
+    cd build
+    cmake ..
+    make -j4
+    # catkin_make
     source /opt/ros/${ROS_DISTRO}/setup.bash
-    mkdir -p catkin_ws/src
-    cd catkin_ws/src
+    mkdir -p $HOME/catkin_ws/src
+    cd $HOME/catkin_ws/src
     catkin_init_workspace
     cd ..
     catkin_make
     source devel/setup.bash
-    cd src/godot_ros_pcviz
-    midir -p $HOME/install
+    # install godot
+    mkdir -p $HOME/install
     cd $HOME/install
     wget https://downloads.tuxfamily.org/godotengine/3.1.1/Godot_v3.1.1-stable_x11.64.zip
     unzip Godot_v3.1.1-stable_x11.64.zip

@@ -6,3 +6,4 @@ docker/home/catkin_ws/*
 docker/home/catkin_ws/src/*
 !.gitkeep
 !.bashrc
+!.tmux.conf
