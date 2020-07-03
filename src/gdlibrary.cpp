@@ -1,11 +1,15 @@
 #include "godot_ros_pcviz.hpp"
 
-int dummy_argc = 1;
-char *dummy_argv[] = {"godot_ros_pcviz"};
-
 extern "C" void GDN_EXPORT godot_gdnative_init(godot_gdnative_init_options *o) {
     godot::Godot::gdnative_init(o);
-    ros::init(dummy_argc, dummy_argv, "godot_ros_pcviz");
+    std::vector<std::string> arguments = {"godot_ros_pcviz"};
+    std::vector<char*> argv;
+    for (const auto& arg : arguments) {
+      argv.push_back((char*)arg.data());
+    }
+    argv.push_back(nullptr);
+    int argc = arguments.size();
+    ros::init(argc, argv.data(), "godot_ros_pcviz");
 }
 
 extern "C" void GDN_EXPORT godot_gdnative_terminate(godot_gdnative_terminate_options *o) {
