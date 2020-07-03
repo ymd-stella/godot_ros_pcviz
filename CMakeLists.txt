@@ -20,6 +20,8 @@ catkin_package()
 
 find_package(OpenCV REQUIRED)
 
+add_subdirectory(thirdparty/godot-cpp)
+
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
@@ -36,7 +38,8 @@ add_library(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
   ${OpenCV_LIBS}
-  ${PROJECT_SOURCE_DIR}/thirdparty/godot-cpp/bin/libgodot-cpp.linux.debug.64.a)
+  godot-cpp
+)
 
 set_target_properties(${PROJECT_NAME}
   PROPERTIES
